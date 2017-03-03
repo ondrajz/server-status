@@ -21,8 +21,8 @@ SLACK_USERNAME=${SLACK_USERNAME-"server-status"}
 # server status data
 
 HOSTNAME=`hostname`
-HOSTIP=`hostname -i`
-ROUTES=`ip -h route list scope global`
+HOSTIP=`hostname -I | sed -r 's/(\S+) (\S+)/\1, \2/g'`
+ROUTES=`ip route list scope global`
 UPTIME=`uptime`
 DISK=`df -hT /`
 MEMORY=`free -h`
